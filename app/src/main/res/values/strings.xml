@@ -1,19 +1,30 @@
 <resources>
     <string name="app_name">AppCommerce</string>
 
-    <!--    Strings da Tela Principal-->
+    <!-- Strings da Tela Principal -->
     <string name="title_categorias_populares">Categorias Populares</string>
     <string name="title_produtos_recentes">Produtos Recentes</string>
     <string name="title_activity_product_detailctivity">ProductDetailctivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="product_detail_button_comprar">Comprar</string>
     <string name="product_detail_descricao">Descrição</string>
+
+<!-- Strings used for fragments for navigation -->
+<!--    <string name="first_fragment_label">First Fragment</string>-->
+<!--    <string name="second_fragment_label">Second Fragment</string>-->
+<!--    <string name="next">Next</string>-->
+<!--    <string name="previous">Previous</string>-->
+<!--    <string name="hello_first_fragment">Hello first fragment</string>-->
+<!--    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>-->
+
+    <!-- Menu Drawer-->
+    <string name="menu_drawer_home">Home</string>
+    <string name="menu_drawer_minha_conta">Minha conta</string>
+    <string name="menu_drawer_categorias">Categorias</string>
+    <string name="menu_drawer_minhas_compras">Minhas compras</string>
+    <string name="menu_drawer_meu_carrinho">Meu carrinho</string>
+    <string name="menu_drawer_sair">Sair</string>
+    <string name="toggle_open">Open</string>
+    <string name="toggle_close">Close</string>
+    <string name="descricao_camisa_ml">Produto camisa manga longa</string>
 
 </resources>
