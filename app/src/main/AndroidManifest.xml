@@ -9,19 +9,34 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".ProductDetailActivity"
-            android:label="@string/title_activity_product_detailctivity">
-        </activity>
-
+        <!-- Splash Screen -->
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- Main Activity -->
+        <activity android:name=".MainActivity">
+        </activity>
+        <!-- Detalhe do produto -->
+        <activity
+            android:name=".ProductDetailActivity"
+            android:label="@string/title_activity_product_detailctivity">
+        </activity>
+        <!-- Cadasrtro do usuário -->
+        <activity android:name=".UserRegisterActivity">
+        </activity>
+        <!-- Login -->
+        <activity android:name=".UserLoginActivity">
+        </activity>
+        <!-- Perfil do usuário -->
+        <activity android:name=".UserProfileActivity">
+        </activity>
+        <!-- Categorias de Produtos -->
+        <activity android:name=".ProductCategoryActivity">
+        </activity>
 
-        <activity android:name=".MainActivity"></activity>
 
 </application>
 

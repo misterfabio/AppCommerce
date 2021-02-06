@@ -29,6 +29,7 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/descricao_camisa_ml" />
             <TextView
+                android:id="@+id/tv_product_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="R$ 89,90"
@@ -53,18 +54,6 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp">
-                <com.google.android.material.chip.Chip
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="Branco"
-                    android:checkable="true"/>
-                <com.google.android.material.chip.Chip
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="Preto"
-                    android:checkable="true"/>
             </com.google.android.material.chip.ChipGroup>
             <!-- Cor -->
             <TextView
@@ -83,18 +72,6 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp">
-                <com.google.android.material.chip.Chip
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="P"
-                    android:checkable="true"/>
-                <com.google.android.material.chip.Chip
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="M"
-                    android:checkable="true"/>
             </com.google.android.material.chip.ChipGroup>
             <!-- Botão Comprar -->
             <Button
@@ -115,6 +92,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"/>
             <TextView
+                android:id="@+id/tv_product_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="adsfasdf asdf asd fasdf asdfasdf asdf asf dadfafads aadf ad  adfa sdfa adf adsf asdf adsf as"
