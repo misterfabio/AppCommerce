@@ -1,9 +1,12 @@
 package com.fabiocarvalho.appcommerce
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.MenuItem
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -11,6 +14,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fabiocarvalho.appcommerce.adapters.ProductAdapter
@@ -19,7 +23,7 @@ import com.fabiocarvalho.appcommerce.models.*
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.*
 
-class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener, ProductCategoryFragment.Callback {
 
     lateinit var toolbar: Toolbar
     lateinit var textTitle: TextView
@@ -28,6 +32,7 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     lateinit var textLogin: TextView
     lateinit var recyclerCategory: RecyclerView
     lateinit var recyclerProduct: RecyclerView
+    lateinit var imageProfile: ImageView
 
 //  On-Create
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,9 +62,11 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
         // Recycler View Produto - categorias
         recyclerCategory = findViewById(R.id.rv_main_product_category)
-        val arrayCategory = arrayListOf<ProductCategory>(ProductCategory("1",
-            "Camisas"), ProductCategory("2", "Calças") , ProductCategory("2", "Meias"),
-                ProductCategory("2", "Calçados")
+        val arrayCategory = arrayListOf<ProductCategory>(
+                ProductCategory("1", "Camisas", fillRvProduct()),
+                ProductCategory("2", "Calças", fillRvProduct()) ,
+                ProductCategory("2", "Meias", fillRvProduct()),
+                ProductCategory("2", "Calçados", fillRvProduct())
         )
         val adapterCategory = ProductCategoryAdapter(arrayCategory,this)
         recyclerCategory.adapter = adapterCategory
@@ -70,6 +77,23 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         val adapterProduct = ProductAdapter(fillRvProduct(), this)
         recyclerProduct.adapter = adapterProduct
         recyclerProduct.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false)
+
+
+        // Image Profile
+        imageProfile = navigationView.getHeaderView(0).findViewById(R.id.header_profile_image)
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val profileImage = PreferenceManager.getDefaultSharedPreferences(this).
+        getString(MediaStore.EXTRA_OUTPUT,null)
+        if (profileImage!=null){
+            imageProfile.setImageURI(Uri.parse(profileImage))
+        }else{
+            imageProfile.setImageResource(R.drawable.profile_image)
+        }
 
     }
 
@@ -122,12 +146,28 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 val intent = Intent(this, ProductCategoryActivity::class.java)
                 startActivity(intent)
             }
-            R.id.nav_orders -> Toast.makeText(this, "Minhas compras", Toast.LENGTH_LONG).show()
-            R.id.nav_cart -> Toast.makeText(this, "Meu carrinho", Toast.LENGTH_LONG).show()
+            R.id.nav_orders -> {
+                val intent = Intent(this, OrderActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.nav_cart -> {
+                val intent = Intent(this, CartActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.nav_settings -> {
+                val intent = Intent(this, SettingsActivity::class.java)
+                startActivity(intent)
+            }
             R.id.nav_logout -> Toast.makeText(this, "Sair", Toast.LENGTH_LONG).show()
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun itemSelected(category: ProductCategory) {
+        val intent = Intent(this, ProductActivity::class.java)
+        intent.putExtra("CATEGORY", category)
+        startActivity(intent)
     }
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

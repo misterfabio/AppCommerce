@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.fabiocarvalho.appcommerce">
 
     <application
@@ -36,6 +37,27 @@
         <!-- Categorias de Produtos -->
         <activity android:name=".ProductCategoryActivity">
         </activity>
+        <!-- Categorias de Produtos -->
+        <activity android:name=".ProductActivity">
+        </activity>
+        <!-- Configurações -->
+        <activity android:name=".SettingsActivity"/>
+        <!-- Carrinho -->
+        <activity android:name=".CartActivity"/>
+        <!--Pedidos-->
+        <activity android:name=".OrderActivity" />
+        <!--Provedor de arquivo-->
+        <provider
+            android:authorities="${applicationId}.fileprovider"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+
+        </provider>
 
 
 </application>

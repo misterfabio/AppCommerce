@@ -1,21 +1,18 @@
 package com.fabiocarvalho.appcommerce
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.GravityCompat
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.fabiocarvalho.appcommerce.adapters.ProductCategoryAdapter
 import com.fabiocarvalho.appcommerce.models.ProductCategory
 
-class ProductCategoryActivity : AppCompatActivity() {
+class ProductCategoryActivity : AppCompatActivity(), ProductCategoryFragment.Callback {
 
     lateinit var toolbar: Toolbar
     lateinit var textTitle: TextView
-    lateinit var recyclerCategory: RecyclerView
+    var isTablet: Boolean = false
 
     //  On-Create
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,18 +27,7 @@ class ProductCategoryActivity : AppCompatActivity() {
         textTitle = findViewById(R.id.toolbar_title)
         textTitle.text = getString(R.string.product_category_title)
 
-
-
-        recyclerCategory = findViewById(R.id.rv_product_category)
-        val arrayCategory = arrayListOf<ProductCategory>(
-            ProductCategory("1",
-            "Camisas"), ProductCategory("2", "Calças") , ProductCategory("2", "Meias"),
-            ProductCategory("2", "Calçados")
-        )
-        val adapterCategory = ProductCategoryAdapter(arrayCategory,this)
-        recyclerCategory.adapter = adapterCategory
-        recyclerCategory.layoutManager = GridLayoutManager(this,2)
-
+        isTablet = findViewById<View>(R.id.fragment_product) != null
 
     }
 
@@ -49,6 +35,20 @@ class ProductCategoryActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+
+    override fun itemSelected(category: ProductCategory) {
+        if (isTablet) {
+            val args = Bundle()
+            args.putSerializable("CATEGORY", category)
+            val fragment = ProductFragment()
+            fragment.arguments = args
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_product, fragment).commit()
+        }else{
+            val intent = Intent(this, ProductActivity::class.java)
+            intent.putExtra("CATEGORY", category)
+            startActivity(intent)
+        }
     }
 
 }

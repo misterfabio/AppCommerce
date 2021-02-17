@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ProductActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -14,12 +15,10 @@
             android:layout_height="?attr/actionBarSize"/>
     </com.google.android.material.appbar.AppBarLayout>
 
-
-    <fragment
-        android:id="@+id/fragment_product_category"
-        android:name="com.fabiocarvalho.appcommerce.ProductCategoryFragment"
+    <FrameLayout
+        android:id="@+id/fragment_product"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout="@layout/fragment_product_category"/>
+        tools:layout="@layout/fragment_product"/>
 
 </LinearLayout>

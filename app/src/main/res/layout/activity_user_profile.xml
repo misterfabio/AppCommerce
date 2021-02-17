@@ -25,21 +25,22 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical">
-
 
             <ImageView
                 android:id="@+id/iv_profile_image"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/profile_image" />
+                android:src="@drawable/profile_image"
+                android:contentDescription="@string/description_foto_do_usuario" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:baselineAligned="false">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txt_layout_name"
@@ -50,7 +51,9 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="4dp"
                     android:layout_weight="1"
-                    android:hint="@string/hint_nome">
+                    android:hint="@string/hint_nome"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="4dp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txt_edit_name"
@@ -68,7 +71,9 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="8dp"
                     android:layout_weight="1"
-                    android:hint="@string/user_profile_sobrenome">
+                    android:hint="@string/user_profile_sobrenome"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="8dp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txt_edit_surname"
@@ -110,7 +115,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:weightSum="3">
+                android:weightSum="3"
+                android:baselineAligned="false">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txt_layout_address"
@@ -121,7 +127,9 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="4dp"
                     android:layout_weight="2"
-                    android:hint="@string/user_profile_logradouro">
+                    android:hint="@string/user_profile_logradouro"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="4dp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txt_edit_address"
@@ -139,7 +147,9 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="8dp"
                     android:layout_weight="1"
-                    android:hint="@string/user_profile_numero">
+                    android:hint="@string/user_profile_numero"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="8dp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txt_edit_number"
@@ -179,7 +189,9 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="4dp"
                     android:layout_weight="1"
-                    android:entries="@array/states" />
+                    android:entries="@array/states"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="4dp" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txt_layout_city"
@@ -208,7 +220,9 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="8dp"
                     android:layout_weight="1"
-                    android:hint="@string/user_profile_cep">
+                    android:hint="@string/user_profile_cep"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="8dp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txt_edit_cep"

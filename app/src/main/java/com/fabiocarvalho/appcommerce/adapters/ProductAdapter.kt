@@ -15,7 +15,6 @@ import com.fabiocarvalho.appcommerce.models.Product
 import com.fabiocarvalho.appcommerce.models.ProductCategory
 import org.w3c.dom.Text
 
-
 class ProductAdapter(val list: List<Product>, val context: Context) :
     RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 

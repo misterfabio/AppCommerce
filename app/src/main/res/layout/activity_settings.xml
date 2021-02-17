@@ -14,12 +14,10 @@
             android:layout_height="?attr/actionBarSize"/>
     </com.google.android.material.appbar.AppBarLayout>
 
-
     <fragment
-        android:id="@+id/fragment_product_category"
-        android:name="com.fabiocarvalho.appcommerce.ProductCategoryFragment"
+        android:id="@+id/fragment_settings"
+        android:name="com.fabiocarvalho.appcommerce.SettingsFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout="@layout/fragment_product_category"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

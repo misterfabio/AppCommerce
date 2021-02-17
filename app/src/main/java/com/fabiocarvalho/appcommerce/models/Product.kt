@@ -1,6 +1,5 @@
 package com.fabiocarvalho.appcommerce.models
 
-import java.io.FileDescriptor
 import java.io.Serializable
 
 data class Product(

@@ -52,6 +52,15 @@
     <string name="btn_atualizar">ATUALIZAR</string>
     <string name="description_icone_de_categorias">Icone de categorias</string>
     <string name="product_category_title">Categorias</string>
+    <string name="product_title">Produtos</string>
+    <string name="product_detail_cor">Cor</string>
+    <string name="product_detail_tamanho">Tamanho</string>
+    <string name="settings_title">Configurações</string>
+    <string name="menu_drawer_configuracoes">Configurações</string>
+    <string name="description_foto_do_usuario">foto do usuário</string>
+    <string name="cart_title">Meu Carrinho</string>
+    <string name="btn_finalizar">FINALIZAR</string>
+    <string name="order_title">Minhas compras</string>
 
     <string-array name="states">
         <item>Acre (AC)</item>

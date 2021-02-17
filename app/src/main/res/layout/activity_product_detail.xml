@@ -41,7 +41,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cor"
+                android:text="@string/product_detail_cor"
                 android:textAppearance="@android:style/TextAppearance.Medium"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="8dp"
@@ -59,7 +59,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tamanho"
+                android:text="@string/product_detail_tamanho"
                 android:textAppearance="@android:style/TextAppearance.Medium"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="8dp"
