@@ -13,8 +13,10 @@ import com.fabiocarvalho.appcommerce.R
 import com.fabiocarvalho.appcommerce.models.ProductCategory
 
 
-class ProductCategoryAdapter(val list: List<ProductCategory>, val context: Context) :
+class ProductCategoryAdapter(val context: Context) :
     RecyclerView.Adapter<ProductCategoryAdapter.ViewHolder>() {
+
+    var list: List<ProductCategory> = emptyList()
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val icon: ImageView = itemView.findViewById(R.id.iv_category_icon)

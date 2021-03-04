@@ -1,12 +1,15 @@
 package com.fabiocarvalho.appcommerce.models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.io.Serializable
+import java.util.*
 
+@Entity(tableName = "users")
 data class User(
-    val id: String,
-    val email: String,
-    val nome: String,
-    val surname: String,
-    val password: String,
-    val image: String,
-    val address: List<UserAddress> = emptyList()) : Serializable
+    @PrimaryKey val id: String = UUID.randomUUID().toString(),
+    var email: String,
+    var name: String,
+    var surname: String,
+    var password: String,
+    var image: String) : Serializable

@@ -1,8 +1,13 @@
 package com.fabiocarvalho.appcommerce.models
 
+import androidx.room.Embedded
+import androidx.room.Entity
 import java.io.Serializable
+import java.util.*
 
+@Entity(tableName = "ordered_products", primaryKeys = ["orderedProductId", "orderId"])
 data class OrderedProduct(
-    var id: String,
-    var product: Product,
+    var orderedProductId: String = UUID.randomUUID().toString(),
+    var orderId: String,
+    @Embedded val product: Product,
     var quantity: Int) : Serializable

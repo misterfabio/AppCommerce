@@ -15,8 +15,10 @@ import com.fabiocarvalho.appcommerce.models.Product
 import com.fabiocarvalho.appcommerce.models.ProductCategory
 import org.w3c.dom.Text
 
-class ProductAdapter(val list: List<Product>, val context: Context) :
+class ProductAdapter(val context: Context) :
     RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+
+    var list: List<Product> = emptyList()
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView : ImageView = itemView.findViewById(R.id.iv_product_image)

@@ -1,5 +1,12 @@
 package com.fabiocarvalho.appcommerce.models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.io.Serializable
+import java.util.*
 
-data class ProductCategory(val id: String, val title: String, val products: List<Product> = emptyList()): Serializable
+@Entity(tableName = "product_categories")
+data class ProductCategory(
+    @PrimaryKey val id: String = UUID.randomUUID().toString(),
+    var title: String,
+    var featured: Boolean = false): Serializable

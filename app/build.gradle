@@ -1,18 +1,26 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.fabiocarvalho.appcommerce"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        // ROOM
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ "room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+
     }
 
     buildTypes {
@@ -41,7 +49,18 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0..0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.preference:preference-ktx:1.1.1'
-    testImplementation 'junit:junit:4.13.1'
+    implementation 'androidx.room:room-runtime:2.2.6'
+    kapt 'androidx.room:room-compiler:2.2.6'
+//-->>  Lifecycle (https://developer.android.com/jetpack/androidx/releases/lifecycle)
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+//   No lugar de:
+//    kapt "androidx.lifecycle:lifecycle-compiler:2.3.0"
+//   Foi colocado:
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.3.0"
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0'
+//->>  Lifecycle [ fim ]
+    implementation 'androidx.fragment:fragment-ktx:1.3.0'
+    testImplementation 'junit:junit:4.13.2'
 //    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
 //    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }

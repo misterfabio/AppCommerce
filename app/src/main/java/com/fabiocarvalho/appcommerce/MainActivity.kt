@@ -7,21 +7,22 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.MenuItem
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.Observer
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fabiocarvalho.appcommerce.adapters.ProductAdapter
 import com.fabiocarvalho.appcommerce.adapters.ProductCategoryAdapter
 import com.fabiocarvalho.appcommerce.models.*
+import com.fabiocarvalho.appcommerce.viewmodel.ProductViewModel
 import com.google.android.material.navigation.NavigationView
-import kotlinx.android.synthetic.*
 
 class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener, ProductCategoryFragment.Callback {
 
@@ -33,6 +34,8 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     lateinit var recyclerCategory: RecyclerView
     lateinit var recyclerProduct: RecyclerView
     lateinit var imageProfile: ImageView
+//    lateinit var productsRepository: ProductsRepository
+    private val productViewModel by viewModels<ProductViewModel>()
 
 //  On-Create
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,27 +63,30 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             startActivity(intent)
         }
 
+        // Image Profile
+        imageProfile = navigationView.getHeaderView(0).findViewById(R.id.header_profile_image)
+
         // Recycler View Produto - categorias
         recyclerCategory = findViewById(R.id.rv_main_product_category)
-        val arrayCategory = arrayListOf<ProductCategory>(
-                ProductCategory("1", "Camisas", fillRvProduct()),
-                ProductCategory("2", "Calças", fillRvProduct()) ,
-                ProductCategory("2", "Meias", fillRvProduct()),
-                ProductCategory("2", "Calçados", fillRvProduct())
-        )
-        val adapterCategory = ProductCategoryAdapter(arrayCategory,this)
+
+//----> Recycler View: Categorias em destaque
+        val adapterCategory = ProductCategoryAdapter(this)
+        productViewModel.featuredCategories.observe(this, Observer {
+            adapterCategory.list = it
+            adapterCategory.notifyDataSetChanged()
+        })
         recyclerCategory.adapter = adapterCategory
         recyclerCategory.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false)
 
-        // Recycler View Produtos
+//----> Recycler View: Produtos
         recyclerProduct = findViewById(R.id.rv_main_product)
-        val adapterProduct = ProductAdapter(fillRvProduct(), this)
+        val adapterProduct = ProductAdapter(this)
+        productViewModel.featuredProducts.observe(this, Observer{
+            adapterProduct.list = it
+            adapterProduct.notifyDataSetChanged()
+        })
         recyclerProduct.adapter = adapterProduct
         recyclerProduct.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false)
-
-
-        // Image Profile
-        imageProfile = navigationView.getHeaderView(0).findViewById(R.id.header_profile_image)
 
     }
 
@@ -95,29 +101,6 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             imageProfile.setImageResource(R.drawable.profile_image)
         }
 
-    }
-
-    fun fillRvProduct() : List<Product>{
-        val product1: Product = Product(
-            "1",
-            "Camisa 89",
-            ProductCategory("id", "Camisas"),
-            "Camisa social 1",
-            120.2,
-            arrayListOf(ProductColor("1","Branca","#ffffff"), ProductColor("2","Preta","#000000")),
-            arrayListOf(ProductSize("1", "P"), ProductSize("1", "M"), ProductSize("1", "G")),
-            emptyList())
-        val product2: Product = Product(
-            "2",
-            "Calça Jeans",
-            ProductCategory("id", "Calças"),
-            "Calça social 1",
-            50.99,
-            arrayListOf(ProductColor("1","Branca","#ffffff"), ProductColor("2","Preta","#000000")),
-            arrayListOf(ProductSize("1", "P"), ProductSize("1", "M"), ProductSize("1", "G")),
-            emptyList())
-
-        return arrayListOf(product1,product2)
     }
 
 //  Quando clica na tecla de voltar
