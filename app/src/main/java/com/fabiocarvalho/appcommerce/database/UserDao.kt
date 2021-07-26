@@ -1,5 +1,6 @@
 package com.fabiocarvalho.appcommerce.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.fabiocarvalho.appcommerce.models.User
 import com.fabiocarvalho.appcommerce.models.UserAddress
@@ -8,12 +9,12 @@ import com.fabiocarvalho.appcommerce.models.UserWithAddresses
 @Dao
 interface UserDao {
 
-    @Query("SELECT * FROM users WHERE id = :userId")
-    fun loadUserById(userId: String):User
+    @Query("SELECT * FROM users WHERE email = :email AND password = :password")
+    fun login(email: String, password: String): User
 
     @Transaction
     @Query("SELECT * FROM users WHERE id = :userId")
-    fun loadUserWithAddresses(userId: String) : UserWithAddresses
+    fun loadUserById(userId: String) : LiveData<UserWithAddresses>
 
     @Insert
     fun insert(user: User)
@@ -26,5 +27,4 @@ interface UserDao {
 
     @Update
     fun update(userAddress: UserAddress)
-
 }

@@ -11,8 +11,10 @@ import com.fabiocarvalho.appcommerce.models.Order
 import java.text.SimpleDateFormat
 import java.util.*
 
-class OrderAdapter (val list: List<Order>, val context: Context) :
+class OrderAdapter (val context: Context) :
     RecyclerView.Adapter<OrderAdapter.ViewHolder>() {
+
+    var list : List<Order> = emptyList()
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val id : TextView = itemView.findViewById(R.id.tv_id)

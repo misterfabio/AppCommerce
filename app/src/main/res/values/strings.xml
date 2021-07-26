@@ -61,6 +61,9 @@
     <string name="cart_title">Meu Carrinho</string>
     <string name="btn_finalizar">FINALIZAR</string>
     <string name="order_title">Minhas compras</string>
+    <string name="login_message">Email e/ou senha inválido(s)!</string>
+    <string name="user_profile_msg_success">Dados atualizados com sucesso.</string>
+    <string name="product_detail_cart_msg">Selecione uma cor e um tamanho.</string>
 
     <string-array name="states">
         <item>Acre (AC)</item>

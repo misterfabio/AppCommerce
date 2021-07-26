@@ -13,6 +13,7 @@ import com.fabiocarvalho.appcommerce.models.*
                         ProductSize::class,
                         User::class,
                         UserAddress::class] , version = 1)
+
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 

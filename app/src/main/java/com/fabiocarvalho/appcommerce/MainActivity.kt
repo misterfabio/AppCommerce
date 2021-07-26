@@ -8,7 +8,6 @@ import android.provider.MediaStore
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
@@ -22,6 +21,7 @@ import com.fabiocarvalho.appcommerce.adapters.ProductAdapter
 import com.fabiocarvalho.appcommerce.adapters.ProductCategoryAdapter
 import com.fabiocarvalho.appcommerce.models.*
 import com.fabiocarvalho.appcommerce.viewmodel.ProductViewModel
+import com.fabiocarvalho.appcommerce.viewmodel.UserViewModel
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener, ProductCategoryFragment.Callback {
@@ -37,7 +37,10 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 //    lateinit var productsRepository: ProductsRepository
     private val productViewModel by viewModels<ProductViewModel>()
 
-//  On-Create
+    private val userViewModel by viewModels<UserViewModel>()
+
+
+//->On-Create
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -92,7 +95,6 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
     override fun onResume() {
         super.onResume()
-
         val profileImage = PreferenceManager.getDefaultSharedPreferences(this).
         getString(MediaStore.EXTRA_OUTPUT,null)
         if (profileImage!=null){
@@ -100,7 +102,11 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         }else{
             imageProfile.setImageResource(R.drawable.profile_image)
         }
-
+        userViewModel.isLogged().observe(this, Observer {
+            it?.let {
+                textLogin.text = "${it.user.name} ${it.user.surname}"
+            }
+        })
     }
 
 //  Quando clica na tecla de voltar
@@ -141,7 +147,12 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 val intent = Intent(this, SettingsActivity::class.java)
                 startActivity(intent)
             }
-            R.id.nav_logout -> Toast.makeText(this, "Sair", Toast.LENGTH_LONG).show()
+            R.id.nav_logout -> {
+                userViewModel.logout()
+                finish()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
